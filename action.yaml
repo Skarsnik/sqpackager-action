@@ -1,0 +1,23 @@
+name: 'SQPackager Action'
+description: 'An action to install SQPackager and run some check'
+inputs:
+  sqpackager-version:
+    description: 'The version of sqpackager to use'
+    required: false
+    default: 'main'
+runs:
+  using: "composite"
+  steps:
+    - uses: action/checkout@v2
+      with: 
+        repository: 'Skarsnik/SkarsnikQtCommon'
+    -
+      name: Windows
+      if: runner.os = 'Windows'
+      run: | 
+           cd SkarsnikQtCommon/SQPackager
+           qmake SQPackager.pro -spec win32-msvc CONFIG+="release no_batch"
+           nmake
+           cd release/
+           windeployqt.exe SQPackager.exe --no-translations --no-system-d3d-compiler --no-opengl --release
+           Add-Content $env:GITHUB_PATH "$env:$GITHUB_WORKSPACE/SkarsnikQtCommon/SQPackager/release/"
