@@ -8,9 +8,9 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: action/checkout@v2
-      with: 
-        repository: 'Skarsnik/SkarsnikQtCommon'
+    #- uses: action/checkout@v2
+    #  with: 
+    #    repository: 'Skarsnik/SkarsnikQtCommon'
     -
       name: Windows
       if: runner.os == 'Windows'
