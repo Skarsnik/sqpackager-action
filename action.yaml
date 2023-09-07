@@ -13,7 +13,8 @@ runs:
         repository: 'Skarsnik/SkarsnikQtCommon'
     -
       name: Windows
-      if: runner.os = 'Windows'
+      if: runner.os == 'Windows'
+      shell: pwsh
       run: | 
            cd SkarsnikQtCommon/SQPackager
            qmake SQPackager.pro -spec win32-msvc CONFIG+="release no_batch"
