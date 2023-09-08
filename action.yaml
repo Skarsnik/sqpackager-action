@@ -15,10 +15,11 @@ runs:
       name: Windows
       if: runner.os == 'Windows'
       shell: pwsh
-      run: | 
+      run: |
+           git clone https://github.com/Skarsnik/SkarsnikQtCommon.git
            cd SkarsnikQtCommon/SQPackager
            qmake SQPackager.pro -spec win32-msvc CONFIG+="release no_batch"
            nmake
            cd release/
            windeployqt.exe SQPackager.exe --no-translations --no-system-d3d-compiler --no-opengl --release
-           Add-Content $env:GITHUB_PATH "$env:$GITHUB_WORKSPACE/SkarsnikQtCommon/SQPackager/release/"
+           Add-Content $env:GITHUB_PATH "$env:GITHUB_WORKSPACE/SkarsnikQtCommon/SQPackager/release/"
