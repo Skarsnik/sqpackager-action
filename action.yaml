@@ -8,9 +8,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    #- uses: action/checkout@v2
-    #  with: 
-    #    repository: 'Skarsnik/SkarsnikQtCommon'
     -
       name: Windows
       if: runner.os == 'Windows'
@@ -23,3 +20,13 @@ runs:
            cd release/
            windeployqt.exe SQPackager.exe --no-translations --no-system-d3d-compiler --no-opengl --release
            Add-Content $env:GITHUB_PATH "$env:GITHUB_WORKSPACE/SkarsnikQtCommon/SQPackager/release/"
+      name: Ubuntu
+      if: runner.os == "Linux"
+      shell: bash
+      run: |
+           git clone https://github.com/Skarsnik/SkarsnikQtCommon.git
+           cd SkarsnikQtCommon/SQPackager
+           qmake SQPackager.pro CONFIG+="release"
+           make
+           make clean
+           Add-Content $env:GITHUB_PATH "$env:GITHUB_WORKSPACE/SkarsnikQtCommon/SQPackager/"
