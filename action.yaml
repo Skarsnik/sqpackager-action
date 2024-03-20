@@ -30,4 +30,4 @@ runs:
            qmake6 SQPackager.pro CONFIG+="release"
            make
            make clean
-           Add-Content $env:GITHUB_PATH "$env:GITHUB_WORKSPACE/SkarsnikQtCommon/SQPackager/"
+           echo "${GITHUB_WORKSPACE}/SkarsnikQtCommon/SQPackager/" >> $GITHUB_PATH
