@@ -31,4 +31,4 @@ runs:
            qmake6 SQPackager.pro CONFIG+="release"
            make
            make clean
-           echo "${GITHUB_WORKSPACE}/SkarsnikQtCommon/SQPackager/" >> $GITHUB_PATH
+           sudo install SQPackager /usb/bin/SQPackager
