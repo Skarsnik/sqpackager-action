@@ -31,4 +31,4 @@ runs:
            qmake6 SQPackager.pro CONFIG+="release"
            make
            make clean
-           sudo install SQPackager /usb/bin/SQPackager
+           sudo install SQPackager /usr/bin/SQPackager
