@@ -13,21 +13,21 @@ runs:
       if: runner.os == 'Windows'
       shell: pwsh
       run: |
-           git clone https://github.com/Skarsnik/SkarsnikQtCommon.git
-           cd SkarsnikQtCommon/SQPackager
+           git clone https://github.com/Skarsnik/SQPackager.git
+           cd SQPackager
            qmake SQPackager.pro -spec win32-msvc CONFIG+="release no_batch"
            nmake
            cd release/
            windeployqt.exe SQPackager.exe --no-translations --no-system-d3d-compiler --no-opengl --release
-           Add-Content $env:GITHUB_PATH "$env:GITHUB_WORKSPACE/SkarsnikQtCommon/SQPackager/release/"
+           Add-Content $env:GITHUB_PATH "$env:GITHUB_WORKSPACE/SQPackager/release/"
     -
       name: Ubuntu
       if: runner.os == 'Linux'
       shell: bash
       run: |
-           git clone https://github.com/Skarsnik/SkarsnikQtCommon.git
+           git clone https://github.com/Skarsnik//SQPackager.git
            sudo apt-get install qt6-base-dev
-           cd SkarsnikQtCommon/SQPackager
+           cd SQPackager
            qmake6 SQPackager.pro CONFIG+="release"
            make
            make clean
